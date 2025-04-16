@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://tjoarchive.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://tjoarchive.github.io/</loc>
+</url>
+<url>
+<loc>https://tjoarchive.github.io/articles/</loc>
+<lastmod>2025-03-31T22:22:06+02:00</lastmod>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/4/image.png</image:loc>
+<image:title><![CDATA[Server after the attack.]]></image:title>
+</image:image>
+</url>
+<url>
+<loc>https://tjoarchive.github.io/characters/</loc>
+<lastmod>2025-03-31T22:35:16+02:00</lastmod>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/5/6f414c00bd12316d6d8f5c79672ea19c.webp</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/5/yaddle.webp</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/5/ankyboe.webp</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/5/Tyetyetyler7676.webp</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://tjoarchive.github.io/media/posts/5/noFilter.webp</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+</url>
+<url>
+<loc>https://tjoarchive.github.io/paths-within-the-jedi-order/</loc>
+<lastmod>2025-03-26T23:51:15+01:00</lastmod>
+</url>
+<url>
+<loc>https://tjoarchive.github.io/training-guides/</loc>
+<lastmod>2025-03-26T22:59:22+01:00</lastmod>
+</url>
+<url>
+<loc>https://tjoarchive.github.io/training-guides-2/</loc>
+<lastmod>2025-03-26T23:46:45+01:00</lastmod>
+</url>
+</urlset>
