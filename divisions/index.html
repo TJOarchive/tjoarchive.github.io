@@ -7,34 +7,9 @@
   console.log('Horizontal tabs found:', tabItems.length);
   console.log('Horizontal panels found:', tabPanels.length);
 
-  const lockedTabs = [
-    { index: 3, password: 'heartoftheblade', message: 'This content is only available to Jedi Council members.' } // Jedi Diplomats
-  ];
-  let unlockedTabs = {};
-
   tabItems.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       console.log('Horizontal tab clicked:', tab.textContent, 'at index:', index);
-
-      const lockedTab = lockedTabs.find(tab => tab.index === index);
-      if (lockedTab) {
-        console.log('Tab is locked:', lockedTab);
-        if (unlockedTabs[index]) {
-          console.log('Tab already unlocked, showing content');
-          const lockedMessage = tabPanels[index].querySelector('.locked-message');
-          const tabContentInner = tabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Showing login button for locked tab');
-          const lockedMessage = tabPanels[index].querySelector('.locked-message');
-          const tabContentInner = tabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'block';
-          tabContentInner.style.display = 'none';
-        }
-      } else {
-        console.log('Tab is not locked, proceeding normally');
-      }
 
       tabItems.forEach(item => item.classList.remove('active'));
       tabPanels.forEach(panel => panel.classList.remove('active'));
@@ -43,46 +18,6 @@
       tabPanels[index].classList.add('active');
     });
   });
-
-  // Add event listeners for login buttons in horizontal tabs
-  tabPanels.forEach((panel, index) => {
-    const loginButton = panel.querySelector('.login-button');
-    const passwordInput = panel.querySelector('.password-input');
-    const passwordField = panel.querySelector('.password-field');
-    const submitButton = panel.querySelector('.submit-password');
-
-    if (loginButton && passwordInput && passwordField && submitButton) {
-      console.log('Found login elements for horizontal panel at index:', index);
-
-      loginButton.addEventListener('click', () => {
-        console.log('Login button clicked for horizontal tab at index:', index);
-        loginButton.style.display = 'none';
-        passwordInput.style.display = 'block';
-        passwordField.focus();
-      });
-
-      submitButton.addEventListener('click', () => {
-        console.log('Submit button clicked for horizontal tab at index:', index);
-        const userPassword = passwordField.value.trim();
-        console.log('User entered password (trimmed):', userPassword);
-        console.log('Expected password:', lockedTabs.find(tab => tab.index === index)?.password);
-        const lockedTab = lockedTabs.find(tab => tab.index === index);
-        if (lockedTab && userPassword === lockedTab.password) {
-          console.log('Password correct, unlocking horizontal tab at index:', index);
-          unlockedTabs[index] = true;
-          const lockedMessage = panel.querySelector('.locked-message');
-          const tabContentInner = panel.querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Password incorrect for horizontal tab at index:', index);
-          alert('Incorrect password. Please try again.');
-          passwordField.value = '';
-          passwordField.focus();
-        }
-      });
-    }
-  });
 });</script><script>document.addEventListener('DOMContentLoaded', () => {
   const vTabItems = document.querySelectorAll('.v-tab-item');
   const vTabPanels = document.querySelectorAll('.v-tab-panel');
@@ -90,32 +25,9 @@
   console.log('Vertical tabs found:', vTabItems.length);
   console.log('Vertical panels found:', vTabPanels.length);
 
-  const vLockedTabs = []; // No locked vertical tabs
-  let vUnlockedTabs = {};
-
   vTabItems.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       console.log('Vertical tab clicked:', tab.textContent, 'at index:', index);
-
-      const lockedTab = vLockedTabs.find(tab => tab.index === index);
-      if (lockedTab) {
-        console.log('Tab is locked:', lockedTab);
-        if (vUnlockedTabs[index]) {
-          console.log('Tab already unlocked, showing content');
-          const lockedMessage = vTabPanels[index].querySelector('.locked-message');
-          const tabContentInner = vTabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Showing login button for locked tab');
-          const lockedMessage = vTabPanels[index].querySelector('.locked-message');
-          const tabContentInner = vTabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'block';
-          tabContentInner.style.display = 'none';
-        }
-      } else {
-        console.log('Tab is not locked, proceeding normally');
-      }
 
       vTabItems.forEach(item => item.classList.remove('active'));
       vTabPanels.forEach(panel => panel.classList.remove('active'));
@@ -124,47 +36,7 @@
       vTabPanels[index].classList.add('active');
     });
   });
-
-  // Add event listeners for login buttons in vertical tabs
-  vTabPanels.forEach((panel, index) => {
-    const loginButton = panel.querySelector('.login-button');
-    const passwordInput = panel.querySelector('.password-input');
-    const passwordField = panel.querySelector('.password-field');
-    const submitButton = panel.querySelector('.submit-password');
-
-    if (loginButton && passwordInput && passwordField && submitButton) {
-      console.log('Found login elements for vertical panel at index:', index);
-
-      loginButton.addEventListener('click', () => {
-        console.log('Login button clicked for vertical tab at index:', index);
-        loginButton.style.display = 'none';
-        passwordInput.style.display = 'block';
-        passwordField.focus();
-      });
-
-      submitButton.addEventListener('click', () => {
-        console.log('Submit button clicked for vertical tab at index:', index);
-        const userPassword = passwordField.value.trim();
-        console.log('User entered password (trimmed):', userPassword);
-        console.log('Expected password:', vLockedTabs.find(tab => tab.index === index)?.password);
-        const lockedTab = vLockedTabs.find(tab => tab.index === index);
-        if (lockedTab && userPassword === lockedTab.password) {
-          console.log('Password correct, unlocking vertical tab at index:', index);
-          vUnlockedTabs[index] = true;
-          const lockedMessage = panel.querySelector('.locked-message');
-          const tabContentInner = panel.querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Password incorrect for vertical tab at index:', index);
-          alert('Incorrect password. Please try again.');
-          passwordField.value = '';
-          passwordField.focus();
-        }
-      });
-    }
-  });
-});</script><header class="top js-header"><a class="logo" href="https://tjoarchive.github.io/"><img src="https://tjoarchive.github.io/media/website/6f414c00bd12316d6d8f5c79672ea19c.webp" alt="TJO Arhcive" width="128" height="128"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li class="active-parent has-submenu"><span class="is-separator" aria-haspopup="true">Archive</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/paths-within-the-jedi-order/" target="_self">Paths</a></li><li class="active"><a href="https://tjoarchive.github.io/divisions/" target="_self">Divisions</a></li><li><a href="https://tjoarchive.github.io/order-law/" target="_self">Order Law</a></li><li><a href="https://tjoarchive.github.io/training-guides-2/" target="_self">Training guides</a></li></ul></li><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Chronicles</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/articles/" target="_self">Articles</a></li></ul></li></ul></nav></header><main class="page"><article class="content"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Divisions in the Jedi Order</h1></div></header></div><div class="entry-wrapper content__entry"><div class="tabs"><ul class="tab-list"><li class="tab-item active align-center">Jedi Temple Guard</li><li class="tab-item">Jedi Assault Force</li><li class="tab-item">The Jedi Investigators</li><li class="tab-item">Librarians Assembly</li></ul><div class="tab -content"><div class="tab-panel active"><p>The Jedi Temple Guards were elite members of the Jedi Order who served as protectors of the Jedi Temple and its secrets. They were trained in combat and held a sacred duty to maintain peace within the Temple. Their primary role was to ensure the security of the Temple and the preservation of Jedi knowledge, often acting as enforcers of Jedi law.<br><br>The Guards wore distinctive golden masks and robes, which helped preserve their anonymity and symbolized their impartiality. They wielded unique double-bladed lightsabers, known for their versatility and effectiveness in combat. The guards were skilled in various forms of lightsaber combat, particularly a form designed to disarm or incapacitate rather than kill.<br><br>While often seen as a mysterious and silent force, the Jedi Temple Guards played an important role in the protection of the Jedi Order until its downfall during the Clone Wars. Their loyalty and dedication to the Order remained unwavering, even during times of great turmoil.</p></div><div class="tab-panel"><p>The Jedi Assault Force, were special teams formed by the Jedi during the Clone Wars.<br><br>They were composed of skilled Jedi who worked in small groups to undertake critical missions, often in direct combat or strategic operations.<br><br>These groups acted under the leadership of Jedi Generals, and their missions varied from leading armies on the front lines to more covert operations.</p></div><div class="tab-panel"><p>The Jedi Investigators were a specialized group within the Jedi Order, tasked with investigating crimes, tracking down criminals, and solving mysteries, particularly those that involved the Force or potential threats to the galaxy. They often worked undercover or in secret, and their duties went beyond typical peacekeeping; they focused on uncovering hidden dangers that could jeopardize the Jedi or the Republic.<br><br>Jedi Investigators used their knowledge of the Force to gather clues, analyze evidence, and interrogate suspects, working closely with law enforcement when necessary. Their skills in perception and understanding of the Force allowed them to detect lies, sense motives, and uncover hidden information.<br><br>These Jedi were trained in various forms of investigation, including psychological profiling, tracking, and even utilizing advanced technology to assist in their work. While their work was often behind the scenes, they played a crucial role in maintaining the security of the Jedi Order and the galaxy, especially during times of political instability like the Clone Wars.</p></div><div class="tab-panel"><p>The Jedi Librarians Assembly refers to a group of Jedi within the Star Wars universe who are responsible for overseeing and maintaining the Jedi Archives. This group of Jedi, often considered scholars, focuses on the collection, preservation, and study of vast amounts of knowledge, including ancient texts, artifacts, and data about the Force. The Librarians are key figures in the preservation of the Jedi Order's knowledge, ensuring that vital information remains available for future generations of Jedi.<br><br>In addition to managing the archives, they also help with research, educating young Jedi, and advising on important matters. The Jedi Temple on Coruscant, where the archives are housed, serves as the central location for their work, and the head librarian typically holds a prominent role within the Jedi Council.<br><br>While not as actively involved in combat like other Jedi, the Librarians' work is crucial in ensuring the continuity of the Jedi Order's knowledge and principles. They are often depicted as calm, wise, and dedicated individuals who have a deep understanding of the galaxy's history and the Force.</p></div></div></div><p><script>document.addEventListener('DOMContentLoaded', () => {
+});</script><header class="top js-header"><a class="logo" href="https://tjoarchive.github.io/"><img src="https://tjoarchive.github.io/media/website/6f414c00bd12316d6d8f5c79672ea19c.webp" alt="TJO Arhcive" width="128" height="128"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li class="active-parent has-submenu"><span class="is-separator" aria-haspopup="true">Archive</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/paths-within-the-jedi-order/" target="_self">Paths</a></li><li class="active"><a href="https://tjoarchive.github.io/divisions/" target="_self">Divisions</a></li><li><a href="https://tjoarchive.github.io/order-law/" target="_self">Order Law</a></li><li><a href="https://tjoarchive.github.io/training-guides-2/" target="_self">Training guides</a></li></ul></li><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Chronicles</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/articles/" target="_self">Articles</a></li></ul></li><li><span class="is-separator">Divisions Database</span></li></ul></nav></header><main class="page"><article class="content"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>Divisions in the Jedi Order</h1></div></header></div><div class="entry-wrapper content__entry"><div class="tabs"><ul class="tab-list"><li class="tab-item active align-center">Jedi Temple Guard</li><li class="tab-item">Jedi Assault Force</li><li class="tab-item">The Jedi Investigators</li><li class="tab-item">Librarians Assembly</li></ul><div class="tab -content"><div class="tab-panel active"><p>The Jedi Temple Guards were elite members of the Jedi Order who served as protectors of the Jedi Temple and its secrets. They were trained in combat and held a sacred duty to maintain peace within the Temple. Their primary role was to ensure the security of the Temple and the preservation of Jedi knowledge, often acting as enforcers of Jedi law.<br><br>The Guards wore distinctive golden masks and robes, which helped preserve their anonymity and symbolized their impartiality. They wielded unique double-bladed lightsabers, known for their versatility and effectiveness in combat. The guards were skilled in various forms of lightsaber combat, particularly a form designed to disarm or incapacitate rather than kill.<br><br>While often seen as a mysterious and silent force, the Jedi Temple Guards played an important role in the protection of the Jedi Order until its downfall during the Clone Wars. Their loyalty and dedication to the Order remained unwavering, even during times of great turmoil.</p></div><div class="tab-panel"><p>The Jedi Assault Force, were special teams formed by the Jedi during the Clone Wars.<br><br>They were composed of skilled Jedi who worked in small groups to undertake critical missions, often in direct combat or strategic operations.<br><br>These groups acted under the leadership of Jedi Generals, and their missions varied from leading armies on the front lines to more covert operations.</p></div><div class="tab-panel"><p>The Jedi Investigators were a specialized group within the Jedi Order, tasked with investigating crimes, tracking down criminals, and solving mysteries, particularly those that involved the Force or potential threats to the galaxy. They often worked undercover or in secret, and their duties went beyond typical peacekeeping; they focused on uncovering hidden dangers that could jeopardize the Jedi or the Republic.<br><br>Jedi Investigators used their knowledge of the Force to gather clues, analyze evidence, and interrogate suspects, working closely with law enforcement when necessary. Their skills in perception and understanding of the Force allowed them to detect lies, sense motives, and uncover hidden information.<br><br>These Jedi were trained in various forms of investigation, including psychological profiling, tracking, and even utilizing advanced technology to assist in their work. While their work was often behind the scenes, they played a crucial role in maintaining the security of the Jedi Order and the galaxy, especially during times of political instability like the Clone Wars.</p></div><div class="tab-panel"><p>The Jedi Librarians Assembly refers to a group of Jedi within the Star Wars universe who are responsible for overseeing and maintaining the Jedi Archives. This group of Jedi, often considered scholars, focuses on the collection, preservation, and study of vast amounts of knowledge, including ancient texts, artifacts, and data about the Force. The Librarians are key figures in the preservation of the Jedi Order's knowledge, ensuring that vital information remains available for future generations of Jedi.<br><br>In addition to managing the archives, they also help with research, educating young Jedi, and advising on important matters. The Jedi Temple on Coruscant, where the archives are housed, serves as the central location for their work, and the head librarian typically holds a prominent role within the Jedi Council.<br><br>While not as actively involved in combat like other Jedi, the Librarians' work is crucial in ensuring the continuity of the Jedi Order's knowledge and principles. They are often depicted as calm, wise, and dedicated individuals who have a deep understanding of the galaxy's history and the Force.</p></div></div></div><p><script>document.addEventListener('DOMContentLoaded', () => {
     const tabItems = document.querySelectorAll('.tab-item');
     const tabPanels = document.querySelectorAll('.tab-panel');
 

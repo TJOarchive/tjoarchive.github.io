@@ -7,34 +7,9 @@
   console.log('Horizontal tabs found:', tabItems.length);
   console.log('Horizontal panels found:', tabPanels.length);
 
-  const lockedTabs = [
-    { index: 3, password: 'heartoftheblade', message: 'This content is only available to Jedi Council members.' } // Jedi Diplomats
-  ];
-  let unlockedTabs = {};
-
   tabItems.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       console.log('Horizontal tab clicked:', tab.textContent, 'at index:', index);
-
-      const lockedTab = lockedTabs.find(tab => tab.index === index);
-      if (lockedTab) {
-        console.log('Tab is locked:', lockedTab);
-        if (unlockedTabs[index]) {
-          console.log('Tab already unlocked, showing content');
-          const lockedMessage = tabPanels[index].querySelector('.locked-message');
-          const tabContentInner = tabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Showing login button for locked tab');
-          const lockedMessage = tabPanels[index].querySelector('.locked-message');
-          const tabContentInner = tabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'block';
-          tabContentInner.style.display = 'none';
-        }
-      } else {
-        console.log('Tab is not locked, proceeding normally');
-      }
 
       tabItems.forEach(item => item.classList.remove('active'));
       tabPanels.forEach(panel => panel.classList.remove('active'));
@@ -43,46 +18,6 @@
       tabPanels[index].classList.add('active');
     });
   });
-
-  // Add event listeners for login buttons in horizontal tabs
-  tabPanels.forEach((panel, index) => {
-    const loginButton = panel.querySelector('.login-button');
-    const passwordInput = panel.querySelector('.password-input');
-    const passwordField = panel.querySelector('.password-field');
-    const submitButton = panel.querySelector('.submit-password');
-
-    if (loginButton && passwordInput && passwordField && submitButton) {
-      console.log('Found login elements for horizontal panel at index:', index);
-
-      loginButton.addEventListener('click', () => {
-        console.log('Login button clicked for horizontal tab at index:', index);
-        loginButton.style.display = 'none';
-        passwordInput.style.display = 'block';
-        passwordField.focus();
-      });
-
-      submitButton.addEventListener('click', () => {
-        console.log('Submit button clicked for horizontal tab at index:', index);
-        const userPassword = passwordField.value.trim();
-        console.log('User entered password (trimmed):', userPassword);
-        console.log('Expected password:', lockedTabs.find(tab => tab.index === index)?.password);
-        const lockedTab = lockedTabs.find(tab => tab.index === index);
-        if (lockedTab && userPassword === lockedTab.password) {
-          console.log('Password correct, unlocking horizontal tab at index:', index);
-          unlockedTabs[index] = true;
-          const lockedMessage = panel.querySelector('.locked-message');
-          const tabContentInner = panel.querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Password incorrect for horizontal tab at index:', index);
-          alert('Incorrect password. Please try again.');
-          passwordField.value = '';
-          passwordField.focus();
-        }
-      });
-    }
-  });
 });</script><script>document.addEventListener('DOMContentLoaded', () => {
   const vTabItems = document.querySelectorAll('.v-tab-item');
   const vTabPanels = document.querySelectorAll('.v-tab-panel');
@@ -90,32 +25,9 @@
   console.log('Vertical tabs found:', vTabItems.length);
   console.log('Vertical panels found:', vTabPanels.length);
 
-  const vLockedTabs = []; // No locked vertical tabs
-  let vUnlockedTabs = {};
-
   vTabItems.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       console.log('Vertical tab clicked:', tab.textContent, 'at index:', index);
-
-      const lockedTab = vLockedTabs.find(tab => tab.index === index);
-      if (lockedTab) {
-        console.log('Tab is locked:', lockedTab);
-        if (vUnlockedTabs[index]) {
-          console.log('Tab already unlocked, showing content');
-          const lockedMessage = vTabPanels[index].querySelector('.locked-message');
-          const tabContentInner = vTabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Showing login button for locked tab');
-          const lockedMessage = vTabPanels[index].querySelector('.locked-message');
-          const tabContentInner = vTabPanels[index].querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'block';
-          tabContentInner.style.display = 'none';
-        }
-      } else {
-        console.log('Tab is not locked, proceeding normally');
-      }
 
       vTabItems.forEach(item => item.classList.remove('active'));
       vTabPanels.forEach(panel => panel.classList.remove('active'));
@@ -124,47 +36,7 @@
       vTabPanels[index].classList.add('active');
     });
   });
-
-  // Add event listeners for login buttons in vertical tabs
-  vTabPanels.forEach((panel, index) => {
-    const loginButton = panel.querySelector('.login-button');
-    const passwordInput = panel.querySelector('.password-input');
-    const passwordField = panel.querySelector('.password-field');
-    const submitButton = panel.querySelector('.submit-password');
-
-    if (loginButton && passwordInput && passwordField && submitButton) {
-      console.log('Found login elements for vertical panel at index:', index);
-
-      loginButton.addEventListener('click', () => {
-        console.log('Login button clicked for vertical tab at index:', index);
-        loginButton.style.display = 'none';
-        passwordInput.style.display = 'block';
-        passwordField.focus();
-      });
-
-      submitButton.addEventListener('click', () => {
-        console.log('Submit button clicked for vertical tab at index:', index);
-        const userPassword = passwordField.value.trim();
-        console.log('User entered password (trimmed):', userPassword);
-        console.log('Expected password:', vLockedTabs.find(tab => tab.index === index)?.password);
-        const lockedTab = vLockedTabs.find(tab => tab.index === index);
-        if (lockedTab && userPassword === lockedTab.password) {
-          console.log('Password correct, unlocking vertical tab at index:', index);
-          vUnlockedTabs[index] = true;
-          const lockedMessage = panel.querySelector('.locked-message');
-          const tabContentInner = panel.querySelector('.tab-content-inner');
-          lockedMessage.style.display = 'none';
-          tabContentInner.style.display = 'block';
-        } else {
-          console.log('Password incorrect for vertical tab at index:', index);
-          alert('Incorrect password. Please try again.');
-          passwordField.value = '';
-          passwordField.focus();
-        }
-      });
-    }
-  });
-});</script><header class="top js-header"><a class="logo" href="https://tjoarchive.github.io/"><img src="https://tjoarchive.github.io/media/website/6f414c00bd12316d6d8f5c79672ea19c.webp" alt="TJO Arhcive" width="128" height="128"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Archive</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/paths-within-the-jedi-order/" target="_self">Paths</a></li><li><a href="https://tjoarchive.github.io/divisions/" target="_self">Divisions</a></li><li><a href="https://tjoarchive.github.io/order-law/" target="_self">Order Law</a></li><li><a href="https://tjoarchive.github.io/training-guides-2/" target="_self">Training guides</a></li></ul></li><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Chronicles</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/articles/" target="_self">Articles</a></li></ul></li></ul></nav></header><main class="page page--author"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper page--author__wrapper"><div><h1>zet <sup>(0)</sup></h1></div></div></header></div><div class="wrapper feed"></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p>Made by zet</p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://tjoarchive.github.io/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://tjoarchive.github.io/assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+});</script><header class="top js-header"><a class="logo" href="https://tjoarchive.github.io/"><img src="https://tjoarchive.github.io/media/website/6f414c00bd12316d6d8f5c79672ea19c.webp" alt="TJO Arhcive" width="128" height="128"></a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Archive</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/paths-within-the-jedi-order/" target="_self">Paths</a></li><li><a href="https://tjoarchive.github.io/divisions/" target="_self">Divisions</a></li><li><a href="https://tjoarchive.github.io/order-law/" target="_self">Order Law</a></li><li><a href="https://tjoarchive.github.io/training-guides-2/" target="_self">Training guides</a></li></ul></li><li class="has-submenu"><span class="is-separator" aria-haspopup="true">Chronicles</span><ul class="navbar__submenu level-2" aria-hidden="true"><li><a href="https://tjoarchive.github.io/articles/" target="_self">Articles</a></li></ul></li><li><span class="is-separator">Divisions Database</span></li></ul></nav></header><main class="page page--author"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper page--author__wrapper"><div><h1>zet <sup>(0)</sup></h1></div></div></header></div><div class="wrapper feed"></div></main><footer class="footer"><div class="wrapper"><div class="footer__copyright"><p>Made by zet</p></div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://tjoarchive.github.io/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://tjoarchive.github.io/assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
         for (var i = 0; i < images.length; i++) {
             if (images[i].complete) {
                 images[i].classList.add('is-loaded');
